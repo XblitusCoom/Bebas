@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SMOOTH Dark Gray</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+  <style>
+    :root {
+      --bg1: #050505;        /* very dark */
+      --bg2: #1b1b1b;        /* dark gray */
+      --panel: rgba(20,20,20,0.55);
+      --accent1: #9fa6ad;    /* light gray accent */
+      --accent2: #7e858b;    /* darker gray accent */
+      --text: #d7dadd;       /* near-white text */
+      --muted: rgba(215,218,221,0.65);
+      --glass-border: rgba(255,255,255,0.04);
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--text);
+      overflow: hidden;
+      background-color: var(--bg1);
+      position: relative;
+    }
+
+    /* Background image with blurred overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url("https://files.catbox.moe/cdnmdt.jpg");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.03);
+      filter: blur(8px) saturate(0.4) contrast(0.85);
+      z-index: 0;
+    }
+    /* dark overlay to keep contrast */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.65));
+      z-index: 0;
+    }
+
+    /* === Header Status === */
+    .server-status {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      background: rgba(30,30,30,0.45);
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px) saturate(0.8);
+      z-index: 5;
+    }
+
+    .server-status i {
+      color: var(--accent1);
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 3; /* above background */
+    }
+
+    .card {
+      width: 100%;
+      max-width: 520px;
+      padding: 34px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(12,12,12,0.42), rgba(18,18,18,0.32));
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.75);
+      backdrop-filter: blur(12px) saturate(0.7);
+      animation: cardIn 0.7s ease-out forwards;
+      color: var(--text);
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .logo {
+      display: block;
+      margin: 6px auto 12px auto;
+      width: 88px;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.7));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: 2px;
+      color: var(--accent1);
+      margin: 6px 0;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    p.sub {
+      margin: 6px 0 18px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Input Box */
+    .input-box {
+      position: relative;
+      width: 100%;
+    }
+    .input-box i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent2);
+      opacity: 0.95;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(8,8,8,0.55);
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      transition: 0.22s;
+      backdrop-filter: blur(6px);
+    }
+    input::placeholder { color: rgba(215,218,221,0.35); }
+    input:focus {
+      border-color: rgba(160,170,175,0.7);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      outline: none;
+    }
+
+    /* Custom Dropdown */
+    .custom-select {
+      position: relative;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .selected {
+      background: rgba(10,10,10,0.6);
+      border: 1px solid rgba(255,255,255,0.035);
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      transition: 0.18s;
+      backdrop-filter: blur(6px);
+    }
+    .selected:hover {
+      transform: translateY(-2px);
+    }
+    .options {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 100%;
+      background: rgba(12,12,12,0.95);
+      border: 1px solid rgba(255,255,255,0.03);
+      border-radius: 10px;
+      margin-top: 6px;
+      z-index: 99;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+    }
+    .options div {
+      padding: 12px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: 0.16s;
+    }
+    .options div:hover {
+      background: rgba(255,255,255,0.02);
+      color: var(--accent1);
+    }
+
+    /* Button */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(90deg, rgba(130,130,130,0.12), rgba(60,60,60,0.14));
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+      transition: transform 0.15s, box-shadow 0.2s;
+      backdrop-filter: blur(6px);
+    }
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+    }
+
+    /* Progress */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 6px;
+      margin-top: 14px;
+      overflow: hidden;
+      display: none;
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent1));
+      border-radius: 6px;
+      transition: width 0.3s;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      background: rgba(18,18,18,0.9);
+      color: var(--text);
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 6;
+    }
+    .toast.show { opacity: 1; }
+
+    /* small responsive tweak */
+    @media (max-width: 480px) {
+      .card { padding: 22px; border-radius: 14px; margin: 18px; }
+      h1 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Status Server -->
+<div class="server-status"><i class="ri-radar-line"></i> Server Active</div>
+
+<div class="wrap">
+  <div class="card">
+    <img class="logo" src="https://files.catbox.moe/degfav.png" alt="logo">
+    <h1><i class="ri-flashlight-fill"></i> Smooth Attack</h1>
+    <p class="sub">Masukkan nomor target di bawah</p>
+
+    <div class="input-box">
+      <input id="targetNumber" type="text" placeholder="62xxxxxxxxxx" />
+    </div>
+
+    <!-- Dropdown -->
+    <div class="custom-select">
+      <div class="selected" onclick="toggleDropdown()"><i class="ri-bug-line"></i> Forclose ▼</div>
+      <div class="options">
+        <div onclick="selectOption('forclose')"><i class="ri-shield-cross-line"></i> Forclose</div>
+        <div onclick="selectOption('blank')"><i class="ri-eye-off-line"></i> Blanking UI</div>
+        <div onclick="selectOption('delay')"><i class="ri-time-line"></i> Delay Invisible</div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="startAttack()"><i class="ri-send-plane-fill"></i> SEND BUG</button>
+    <div class="progress-container" id="progressBox">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+  const targetInput = document.getElementById("targetNumber");
+  const toast = document.getElementById("toast");
+  const progressBox = document.getElementById("progressBox");
+  const progressBar = document.getElementById("progressBar");
+  let selectedType = "forclose";
+
+  function toggleDropdown() {
+    const opt = document.querySelector(".options");
+    opt.style.display = opt.style.display === "block" ? "none" : "block";
+  }
+
+  function selectOption(value) {
+    selectedType = value;
+    document.querySelector(".selected").innerHTML = iconFor(value) + " " + capitalize(value) + " ▼";
+    document.querySelector(".options").style.display = "none";
+  }
+
+  function capitalize(str){ return str.charAt(0).toUpperCase() + str.slice(1); }
+  function iconFor(type){
+    if(type === "forclose") return '<i class="ri-shield-cross-line"></i>';
+    if(type === "blank") return '<i class="ri-eye-off-line"></i>';
+    if(type === "delay") return '<i class="ri-time-line"></i>';
+    return '';
+  }
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2500);
+  }
+
+  async function startAttack() {
+    const number = targetInput.value.trim();
+    if (!number || !number.startsWith("62") || number.length < 8) {
+      showToast("⚠️ Nomor target tidak valid");
+      return;
+    }
+
+    progressBox.style.display = "block";
+    progressBar.style.width = "0%";
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 10;
+      progressBar.style.width = progress + "%";
+      if (progress >= 100) clearInterval(interval);
+    }, 200);
+
+    try {
+      const res = await fetch(`/api/bug/${selectedType}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ number })
+      });
+
+      const data = await res.json();
+      progressBar.style.width = "100%";
+
+      if (res.ok) showToast("Send succes (" + selectedType + ")");
+      else showToast("❌ " + (data?.error || "Gagal"));
+    } catch (err) {
+      progressBar.style.width = "100%";
+      showToast("❌ Error: " + err.message);
+    }
+  }
+
+  targetInput.addEventListener("keydown", e => {
+    if (e.key === "Enter") startAttack();
+  });
+
+  // close dropdown when clicking outside
+  document.addEventListener('click', (ev) => {
+    const sel = document.querySelector('.selected');
+    const opts = document.querySelector('.options');
+    if (!sel.contains(ev.target)) opts.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
